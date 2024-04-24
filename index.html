@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <!-- Metadatos del documento -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Enlaces a recursos externos -->
+    <link href="imagenes/icono_hamburguesa.ico" rel="shor cut icon" />
+    <link href="css/style_index.css" rel="stylesheet" />
+
+    <!-- Título de la página -->
+    <title>Azabache Fast Food</title>
+  </head>
+
+  <body>
+    <!-- Encabezado -->
+    <header class="header">
+      <!-- Logo del sitio -->
+      <a href="index.html"
+        ><img class="header_logo" src="imagenes/azabache_Logo.png" alt
+      /></a>
+
+      <!-- Menú de navegación -->
+      <div class="header_menu">
+        <a class="header_items" href="index.html">Inicio</a>
+        <a class="header_items" href="#pie_pagina">Contactanos</a>
+        <a class="header_items" href="compras.html"
+          ><img class="header_imagen" src="imagenes/carrito.png" alt />
+          Carrito</a
+        >
+        <a class="header_items" href="index.html">
+          Menú <img class="header_imagen" src="imagenes/menu.png" alt
+        /></a>
+      </div>
+    </header>
+
+    <!-- Barra de navegación principal -->
+    <nav class="container">
+      <!-- Slider de imágenes -->
+      <div class="container_slider">
+        <ul class="container_slider__list">
+          <li class="container_slider__item">
+            <img
+              class="container_slider__img"
+              src="imagenes/hamburguesa2.jpg"
+              alt="Hamburguesa 2"
+            />
+          </li>
+          <li class="container_slider__item">
+            <img
+              class="container_slider__img"
+              src="imagenes/hamburguesa4.jpg"
+              alt="Hamburguesa 3"
+            />
+          </li>
+          <li class="container_slider__item">
+            <img
+              class="container_slider__img"
+              src="imagenes/hamburguesa3.jpg"
+              alt="Hamburguesa 4"
+            />
+          </li>
+        </ul>
+      </div>
+      <!-- Sección lateral -->
+      <section class="container_lateral">
+        <!-- Imagen lateral -->
+        <img
+          class="container_lateral_imagen"
+          src="imagenes/hamburguesa1.jpg"
+          alt="..."
+        />
+        <!-- Botón para comprar -->
+        <a class="container_lateral_boton" href="index.html"
+          ><button class="boton" type="button">Comprar Ahora</button></a
+        >
+      </section>
+    </nav>
+
+    <!-- Sección de productos -->
+    <section class="productos">
+      <div class="productos_titulo">
+        <div class="productos_texto">Productos</div>
+        <a class="productos_texto" href="index.html">Ver Todo</a>
+      </div>
+      <!-- Contenedor de las imágenes de los productos -->
+      <div class="productos_cartas">
+        <div class="fila_productos">
+          <div class="producto">
+            <img
+              class="productos_imagen"
+              src="imagenes/clasica.jpg"
+              alt="..."
+            />
+            <button class="carrito_boton">Añadir al carrito</button>
+          </div>
+          <div class="producto">
+            <img class="productos_imagen" src="imagenes/pollo.jpg" alt="..." />
+            <button class="carrito_boton">Añadir al carrito</button>
+          </div>
+          <div class="producto">
+            <img
+              class="productos_imagen"
+              src="imagenes/tocineta.jpg"
+              alt="..."
+            />
+            <button class="carrito_boton">Añadir al carrito</button>
+          </div>
+        </div>
+
+        <div class="fila_productos">
+          <div class="producto">
+            <img class="productos_imagen" src="imagenes/dobleCarne.jpg" alt />
+            <button class="carrito_boton">Añadir al carrito</button>
+          </div>
+          <div class="producto">
+            <img
+              class="productos_imagen"
+              src="imagenes/tripleCarne.jpg"
+              alt="..."
+            />
+            <button class="carrito_boton">Añadir al carrito</button>
+          </div>
+          <div class="producto">
+            <img
+              class="productos_imagen"
+              src="imagenes/dobleCarnePollo.jpg"
+              alt="..."
+            />
+            <button class="carrito_boton">Añadir al carrito</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Separador horizontal -->
+    <hr />
+
+    <!-- Pie de página -->
+    <footer>
+      <!-- Contenido del pie de página -->
+      <div class="footer" id="pie_pagina">
+        <!-- Información de la empresa -->
+        <div>
+          <h3 class="footer_titulo">Azabache Fast Food</h3>
+          <img class="footer_logo" src="imagenes/azabache_Logo.png" alt />
+        </div>
+        <!-- Información de contacto -->
+        <div class="footer_section">
+          <h3 class="footer_titulo">Información</h3>
+          <p class="footer_texto">
+            <img class="footer_imagen" src="imagenes/Ubicacion.png" alt />
+            Carrera 10 # 13B - 22
+          </p>
+          <p class="footer_texto">
+            <img class="footer_imagen" src="imagenes/whatsapp.png" alt /> 321
+            456 7890
+          </p>
+        </div>
+        <!-- Enlaces rápidos -->
+        <div class="footer_section">
+          <h3 class="footer_titulo">Enlaces rápidos</h3>
+          <ul>
+            <li><a class="footer_enlaces" href="index.html">Inicio</a></li>
+            <li><a class="footer_enlaces" href="index.html">Productos</a></li>
+            <li><a class="footer_enlaces" href="compras.html">Carrito</a></li>
+            <li><a class="footer_enlaces" href="#pie_pagina">Contactos</a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- Derechos de autor -->
+      <div class="footer_copyright">
+        <p>&copy; 2022 Azabache Fast Food. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+  </body>
+</html>

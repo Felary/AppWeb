@@ -1,0 +1,319 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  background-color: #000;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  background: black;
+  padding: 5px 10px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.header_logo {
+  width: 150px;
+  height: 60px;
+}
+
+.header_menu {
+  display: flex;
+  align-items: center;
+}
+
+.header_imagen {
+  width: 40px;
+  height: 40px;
+}
+
+.header_items {
+  text-decoration: none;
+  display: flex;
+  text-align: left;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  background: black;
+  padding: 0;
+  margin: 0 20px;
+  align-items: center;
+  color: white;
+}
+
+.header_items:hover {
+  color: #e75b0e;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: black;
+  color: white;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 25px;
+  margin-left: 190px;
+  margin-right: 190px;
+}
+
+.footer_titulo {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 25px;
+}
+
+.footer_texto {
+  padding: 0px;
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+.footer_imagen {
+  width: 20px;
+}
+
+.footer_logo {
+  margin-top: 170px;
+  width: 120px;
+}
+
+ul {
+  list-style: none;
+}
+.footer_enlaces {
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.footer_enlaces:hover {
+  color: #e75b0e;
+}
+
+.footer_section li {
+  margin: 20px 0;
+}
+
+.footer_copyright {
+  background-color: black;
+  color: white;
+  margin-left: 200px;
+}
+
+.accesos {
+  display: flex;
+  justify-content: center;
+}
+.casilla_activa {
+  margin: 0 50px;
+  position: relative;
+  top: 100px;
+  background-color: #e75b0e;
+  width: 130px;
+  height: 50px;
+  border: 3px solid black;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
+  color: white;
+  font-size: 20px;
+  align-items: center;
+}
+
+.casilla_inactiva {
+  margin: 0 50px;
+  position: relative;
+  top: 100px;
+  background-color: #9b664a;
+  width: 130px;
+  height: 50px;
+  border: 3px solid black;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
+  color: white;
+  font-size: 20px;
+  align-items: center;
+}
+.acceso_items {
+  text-decoration: none;
+  display: flex;
+  text-align: left;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  background: black;
+  padding: 0;
+  margin: 0 20px;
+  align-items: center;
+  color: white;
+  background-color: transparent;
+}
+
+.barra {
+  display: flex;
+  margin: 80px 170px;
+  justify-content: space-between;
+}
+
+.carrito {
+  background-color: #202020;
+  width: 400px;
+  height: 610px;
+  border: 3px solid #202020;
+  border-radius: 50px;
+  color: white;
+}
+.carrito_envio {
+  background-color: #202020;
+  height: 200px;
+  width: 400px;
+  border: 3px solid #202020;
+  border-radius: 50px;
+  color: white;
+}
+.carrito_pedido {
+  background-color: #202020;
+  height: 450px;
+  width: 630px;
+  border: 3px solid #202020;
+  border-radius: 50px;
+  color: white;
+}
+
+.carrito_titulo {
+  background-color: transparent;
+  margin: 50px 50px;
+}
+
+.carrito_subTitulo {
+  background-color: transparent;
+  margin: 0 25px;
+}
+
+.carrito_cartas {
+  display: flex;
+  flex-wrap: wrap;
+  background: #202020;
+}
+
+.carrito_imagen {
+  display: flex;
+  width: 100px;
+  height: 100px;
+  border: 3px solid black;
+  border-radius: 20px;
+  margin: 35px 45px;
+}
+
+.carrito_imagen2 {
+  background-color: transparent;
+  width: 20px;
+  margin-left: 70px;
+}
+
+.carrito_texto {
+  background-color: transparent;
+  margin-top: 100px;
+}
+
+.campo_cupon {
+  display: flex;
+  justify-content: space-between;
+  background-color: #202020;
+}
+
+.resumen_pedido {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px;
+  background-color: #202020;
+}
+
+#aplicar_cupon {
+  margin: 10px 100px;
+  padding: 10px 20px;
+  font-size: 1em;
+  color: #fff;
+  background-color: #e75b0e;
+  border: 3px solid #202020;
+  border-radius: 50px;
+  cursor: pointer;
+}
+.cupon {
+  background-color: white;
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 1em;
+  border: 3px solid #202020;
+  border-radius: 70px;
+  margin-left: 90px;
+}
+#aplicar_cupon:hover {
+  background-color: #666;
+}
+.cupon1 {
+  background-color: white;
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 1em;
+  border: 3px solid #202020;
+  border-radius: 50px;
+  margin-left: 30px;
+}
+
+.resumen_item {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  margin: 10px 0;
+}
+
+#agregar_productos,
+#siguiente_fase {
+  margin: 20px 20px;
+  padding: 10px 20px;
+  font-size: 1em;
+  color: #fff;
+  background-color: #666;
+  cursor: pointer;
+  border: 3px solid #202020;
+  border-radius: 50px;
+}
+
+#agregar_productos:hover,
+#siguiente_fase:hover {
+  background-color: #e75b0e;
+}
+.notas {
+  display: flex;
+  justify-content: space-between;
+  width: 70px;
+  background: transparent;
+}
+.envio_titulo {
+  .carrito_titulo {
+    background-color: transparent;
+    margin: 50px 50px;
+  }
+}
+.asterisco {
+  color: red;
+  margin-left: 4px;
+}
+
+.formulario {
+  display: flex;
+  align-items: center;
+  margin-left: 40px;
+}
