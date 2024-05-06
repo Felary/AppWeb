@@ -9,12 +9,7 @@ if (isset($_POST["username"])) {
   $resultado = $sentencia->execute([$user, $email, $password]);
   
 }
-
-
-
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="es">
@@ -41,13 +36,7 @@ if (isset($_POST["username"])) {
     <!-- Menú de navegación -->
     <div class="header_menu">
       <a class="header_items" href="registro.php">Registro</a>
-      <a class="header_items" href="Login.php">Iniciar Sesion</a>
-      <a class="header_items" href="index.html">Inicio</a>
-      <a class="header_items" href="#pie_pagina">Contactanos</a>
-      <a class="header_items" href="compras.html"><img class="header_imagen" src="imagenes/carrito.png" alt />
-        Carrito</a>
-      <a class="header_items" href="index.html">
-        Menú <img class="header_imagen" src="imagenes/menu.png" alt /></a>
+      <a class="header_items" href="Login.php">Iniciar Sesion</a>      
     </div>
   </header>
   <div class="register-container">
