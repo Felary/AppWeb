@@ -1,4 +1,11 @@
 <?php
+session_start();
+if(!isset($_SESSION['nombre'])){
+    header("Location: Login.php");
+}
+
+
+
 include("./conexion.php");
 if (isset($_POST["username"])) {
   $user = $_POST["username"];
@@ -6,7 +13,11 @@ if (isset($_POST["username"])) {
   $password = $_POST["password"];
   $sentencia = $conexion->prepare("insert into registro (usuario, correo, contraseña)values(?,?,?);");
   $resultado = $sentencia->execute([$user, $email, $password]);
+
   
+  if ($resultado == true) {
+    $_SESSION["nombre"] = $user;
+  }
 }
 
 

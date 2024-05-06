@@ -1,3 +1,10 @@
+<?php 
+if(isset($_SESSION["nombre"])) {
+  echo $_SESSION["nombre"];
+}
+echo "hola";
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -25,7 +32,7 @@
     <div class="header_menu">
       <a class="header_items" href="registro.php">Registro</a>
       <a class="header_items" href="Login.php">Iniciar Sesion</a>
-      <a class="header_items" href="index.html">Inicio</a>
+      <a class="header_items" href="index.php">Inicio</a>
       <a class="header_items" href="#pie_pagina">Contactanos</a>
       <a class="header_items" href="compras.html"><img class="header_imagen" src="imagenes/carrito.png" alt />
         Carrito</a>
