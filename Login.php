@@ -14,13 +14,32 @@ if (isset($_POST["username"])) {
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Iniciar Sesión</title>
-  <link rel="stylesheet" href="styles.css">
+  <!-- Metadatos del documento -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Enlaces a recursos externos -->
+  <link href="imagenes/icono_hamburguesa.ico" rel="shor cut icon" />
+  <link href="css/style_index.css" rel="stylesheet" />
+
+  <!-- Título de la página -->
+  <title>Azabache Fast Food</title>
 </head>
 
 <body>
+   <!-- Encabezado -->
+   <header class="header">
+    <!-- Logo del sitio -->
+    <a href="index.html"><img class="header_logo" src="imagenes/azabache_Logo.png" alt /></a>
+
+
+    <!-- Menú de navegación -->
+    <div class="header_menu">
+      <a class="header_items" href="registro.php">Registro</a>
+      <a class="header_items" href="Login.php">Iniciar Sesion</a>
+      
+    </div>
+  </header>
   <div class="login-container">
     <h2>Iniciar Sesión</h2>
       <form action="Login.php" method="post">
@@ -39,7 +58,7 @@ if (isset($_POST["username"])) {
 <style>
   body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: black;
     margin: 0;
     padding: 0;
     display: flex;
