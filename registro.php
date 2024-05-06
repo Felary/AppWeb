@@ -8,9 +8,7 @@ if (isset($_POST["username"])) {
 
   $sentencia = $conexion->prepare("insert into registro (usuario, correo, contraseña)values(?,?,?);");
   $resultado = $sentencia->execute([$user, $email, $password]);
-  if ($resultado == true) {    
-    echo "REGISTRADO CORRECTAMENTE";
-  }
+  
 }
 
 
@@ -45,7 +43,7 @@ if (isset($_POST["username"])) {
         <label for="password">Contraseña</label>
         <input type="password" id="password" name="password" required>
       </div>
-      <button type="submit">Registrarse</button>
+      <button type="submit" >Registrarse</button>
     </form>
   </div>
 </body>
