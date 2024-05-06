@@ -4,8 +4,6 @@ if (isset($_POST["username"])) {
   $user = $_POST["username"];
   $email = $_POST["email"];
   $password = $_POST["password"];
-
-
   $sentencia = $conexion->prepare("insert into registro (usuario, correo, contraseña)values(?,?,?);");
   $resultado = $sentencia->execute([$user, $email, $password]);
   
