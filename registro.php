@@ -1,11 +1,10 @@
+
 <?php
 include("./conexion.php");
 if (isset($_POST["username"])) {
   $user = $_POST["username"];
   $email = $_POST["email"];
   $password = $_POST["password"];
-
-
   $sentencia = $conexion->prepare("insert into registro (usuario, correo, contraseña)values(?,?,?);");
   $resultado = $sentencia->execute([$user, $email, $password]);
   
@@ -21,13 +20,36 @@ if (isset($_POST["username"])) {
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registro</title>
-  <link rel="stylesheet" href="styles.css">
+  <!-- Metadatos del documento -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Enlaces a recursos externos -->
+  <link href="imagenes/icono_hamburguesa.ico" rel="shor cut icon" />
+  <link href="css/style_index.css" rel="stylesheet" />
+
+  <!-- Título de la página -->
+  <title>Azabache Fast Food</title>
 </head>
 
 <body>
+<header class="header">
+    <!-- Logo del sitio -->
+    <a href="index.html"><img class="header_logo" src="imagenes/azabache_Logo.png" alt /></a>
+
+
+    <!-- Menú de navegación -->
+    <div class="header_menu">
+      <a class="header_items" href="registro.php">Registro</a>
+      <a class="header_items" href="Login.php">Iniciar Sesion</a>
+      <a class="header_items" href="index.html">Inicio</a>
+      <a class="header_items" href="#pie_pagina">Contactanos</a>
+      <a class="header_items" href="compras.html"><img class="header_imagen" src="imagenes/carrito.png" alt />
+        Carrito</a>
+      <a class="header_items" href="index.html">
+        Menú <img class="header_imagen" src="imagenes/menu.png" alt /></a>
+    </div>
+  </header>
   <div class="register-container">
     <h2>Registro</h2>
     <form action="registro.php" method="post">
@@ -50,7 +72,7 @@ if (isset($_POST["username"])) {
 <style>
   body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: black;
     margin: 0;
     padding: 0;
     display: flex;

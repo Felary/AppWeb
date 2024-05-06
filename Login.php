@@ -3,7 +3,6 @@ include("./conexion.php");
 if (isset($_POST["username"])) {
   $user = $_POST["username"];
   $password = $_POST["password"];
-
   $sentencia = $conexion->prepare("SELECT * FROM registro WHERE usuario = ? AND contraseña = ?");
   $sentencia->execute([$user, $password]);
   $resultado = $sentencia->fetch();  
