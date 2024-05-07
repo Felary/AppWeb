@@ -4,23 +4,23 @@ if(!isset($_SESSION['nombre'])){
     header("Location: login.php");
 }
 
-session_start();
-if(!isset($_SESSION['nombre'])){
-    header("Location: login.php");
-}
-
 include("./conexion.php");
-$_SESSION['mensaje']="Se continuara con el proceso 
-            una vez acabe esta seccion";
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : '';
-    $apellido = isset($_POST['apellido']) ? $_POST['apellido'] : '';
-    $telefono = isset($_POST['telefono']) ? $_POST['telefono'] : '';
-    $correo = isset($_POST['correo']) ? $_POST['correo'] : '';
-    $direccion = isset($_POST['direccion']) ? $_POST['direccion'] : '';
+$_SESSION['mensaje']="Se continuara con el proceso una vez acabe esta seccion";
 
-    // Verifica si todos los campos están llenos
-    if ($nombre != '' && $apellido != '' && $telefono != '' && $correo != '' && $direccion != '') {
+try {
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : '';
+        $apellido = isset($_POST['apellido']) ? $_POST['apellido'] : '';
+        $telefono = isset($_POST['telefono']) ? $_POST['telefono'] : '';
+        $correo = isset($_POST['correo']) ? $_POST['correo'] : '';
+        $direccion = isset($_POST['direccion']) ? $_POST['direccion'] : '';
+
+       
+        // Verifica si el teléfono es un número
+        if (!is_numeric($telefono)) {
+            throw new Exception("El teléfono debe ser un número");
+        }
+
         // Prepara una consulta SQL para insertar los datos en la base de datos
         $sentencia = $conexion->prepare("INSERT INTO datos (nombre, apellido, telefono, correo, direccion) VALUES (?, ?, ?, ?, ?)");
         $sentencia->execute([$nombre, $apellido, $telefono, $correo, $direccion]);
@@ -28,12 +28,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($sentencia->rowCount() > 0) {
             $_SESSION['mensaje']="Datos insertados correctamente";           
         } else {
-            $_SESSION['mensaje']="Error al insertar los datos";            
+            throw new Exception("Error al insertar los datos");            
         }
-    } else {
-        $_SESSION['mensaje']="Por favor, completa todos los campos";
-        
     }
+} catch (Exception $e) {
+    $_SESSION['mensaje'] = $e->getMessage();
 }
 
 $subtotal = isset($_SESSION["subtotal"]) ? $_SESSION["subtotal"] : 0;
