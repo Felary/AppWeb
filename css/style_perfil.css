@@ -225,12 +225,14 @@ ul {
   background-color: transparent;
   margin-top: 100px;
 }
-
 .campo_cupon {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background-color: #202020;
 }
+
+
 
 .resumen_pedido {
   display: flex;

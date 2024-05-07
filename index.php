@@ -1,7 +1,7 @@
-<?php 
+<?php
 session_start();
-if(!isset($_SESSION['nombre'])) {
-  header("Location: Login.php");
+if(!isset($_SESSION['nombre'])){
+    header("Location: login.php");
 }
 ?>
 <?php
@@ -21,7 +21,7 @@ $_SESSION['nombre']=$_GET['nombre'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Enlaces a recursos externos -->
-    <link href="imagenes/icono_hamburguesa.ico" rel="shor cut icon" />
+    <link rel="shortcut icon" href="imagenes/icono_hamburguesa.ico" type="image/x-icon">
     <link href="css/style_index.css" rel="stylesheet" />
 
     <!-- Título de la página -->
@@ -33,7 +33,8 @@ $_SESSION['nombre']=$_GET['nombre'];
     <header class="header">
 
         <?php
-        include_once 'menu.html'
+        
+        include_once 'menuSecundario.html'
     ?>
 
     </header>
@@ -56,10 +57,14 @@ $_SESSION['nombre']=$_GET['nombre'];
         </div>
         <!-- Sección lateral -->
         <section class="container_lateral">
+            <?php
+              echo "<h1 style='color: white; font-size: 30px;'>Bienvenido ".$_SESSION['nombre']."</h1>";
+            ?>
+
             <!-- Imagen lateral -->
-            <img class="container_lateral_imagen" src="imagenes/hamburguesa1.jpg" alt="..." />
+            <img class=" container_lateral_imagen" src="imagenes/hamburguesa1.jpg" alt="..." />
             <!-- Botón para comprar -->
-            <a class="container_lateral_boton" href="index.html"><button class="boton" type="button">Comprar
+            <a class="container_lateral_boton" href="compras.php"><button class="boton" type="button">Comprar
                     Ahora</button></a>
         </section>
     </nav>

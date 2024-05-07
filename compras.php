@@ -4,6 +4,34 @@ if(!isset($_SESSION['nombre'])){
     header("Location: login.php");
 }
 ?>
+<?php
+include_once 'conexion.php';
+$_SESSION["cupon"] = "No se ha aplicado ningún cupón";
+if (isset($_POST["cupon"])) {
+   
+  $cupon = $_POST["cupon"];
+  $sentencia = $conexion->prepare("SELECT * FROM cupones WHERE codigo = ?");
+  $sentencia->execute([$cupon]);
+  
+  $resultado = $sentencia->fetch();  
+  if ($resultado != false) {
+    $_SESSION["codigo"] = $resultado["codigo"];
+    $_SESSION["descuento"] = $resultado["descuento"];
+    $_SESSION["cupon"] = "El cupón es válido";
+    $_SESSION["subtotal"] = 12500;
+    
+} else {    
+   
+    $_SESSION["descuento"] = 0;
+}
+}
+?>
+<?php
+    $subtotal = 12500; // Reemplaza esto con el total real
+    $descuento = isset($_SESSION["descuento"]) ? $_SESSION["descuento"] : 0;
+    $nuevoTotal = $subtotal - $descuento;
+   ?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -18,37 +46,29 @@ if(!isset($_SESSION['nombre'])){
 <body>
     <!-- Encabezado de la página -->
     <header class="header">
-        <a href="index.html"><img class="header_logo" src="imagenes/azabache_Logo.png" alt></a> <!-- Logo del sitio -->
-
-        <!-- Menú de navegación -->
-        <div class="header_menu">
-            <a class="header_items" href="index.html">Inicio</a>
-            <a class="header_items" href="#pie_pagina">Contactanos</a>
-            <a class="header_items" href="compras.html"><img class="header_imagen" src="imagenes/carrito.png" alt>
-                Carrito</a>
-            <a class="header_items" href="productos.html">
-                Menú <img class="header_imagen" src="imagenes/menu.png" alt>
-            </a>
-        </div>
+        <?php
+        
+        include_once 'menuSecundario.html'
+    ?>
     </header>
 
     <!-- Barra de navegación para la sección de acceso -->
     <nav class="accesos">
         <div class="casilla_activa">
-            <a class="acceso_items" href="compras.html">Carrito</a>
+            <a class="acceso_items" href="compras.php">Carrito</a>
         </div>
 
         <!-- Otras opciones de acceso -->
         <div class="casilla_inactiva">
-            <a class="acceso_items" href="compras_perfil.html">Perfil</a>
+            <a class="acceso_items" href="compras_perfil.php">Perfil</a>
         </div>
         <!-- Otras opciones de acceso -->
         <div class="casilla_inactiva">
-            <a class="acceso_items" href="compras.html">Entrega</a>
+            <a class="acceso_items" href="compras.php">Entrega</a>
         </div>
         <!-- Otras opciones de acceso -->
         <div class="casilla_inactiva">
-            <a class="acceso_items" href="compras.html">Pago</a>
+            <a class="acceso_items" href="compras.php">Pago</a>
         </div>
     </nav>
 
@@ -78,27 +98,35 @@ if(!isset($_SESSION['nombre'])){
             <div class="resumen_pedido">
                 <!-- Campo para ingresar un cupón -->
                 <div class="campo_cupon">
-                    <input class="cupon" id="cupon" name="cupon" type="text" placeholder="Ingresar cupón">
-                    <button id="aplicar_cupon">Aplicar</button>
+
+                    <form method="POST" action="compras.php" style="display: flex;">
+                        <input class="cupon" id="cupon" name="cupon" type="text" placeholder="Ingresar cupón" autofocus>
+                        <button id="aplicar_cupon">Aplicar</button>
+                    </form>
                 </div>
+                <?php
+                    echo "<h1 style='color: white; font-size: 15px;'>".$_SESSION['cupon']." </h1>";
+                    ?>
                 <!-- Detalles del pedido -->
                 <div class="resumen_item">
                     <span>Subtotal:</span>
-                    <span id="subtotal">$12.500</span>
+                    <span id="subtotal">$<?php echo number_format($subtotal, 2, '.', ','); ?></span>
                 </div>
                 <div class="resumen_item">
                     <span>Descuento:</span>
-                    <span id="descuento">$0.00</span>
+                    <span
+                        id="descuento">$<?php echo isset($_SESSION["descuento"]) ? number_format($_SESSION["descuento"], 2, '.', ',') : "0.00"; ?></span>
                 </div>
                 <div class="resumen_item">
                     <span>Total:</span>
-                    <span id="total">$12.500</span>
+
+                    <span id="total">$<?php echo number_format($nuevoTotal, 2, '.', ','); ?></span>
                 </div>
                 <!-- Botones para continuar con el proceso de compra -->
                 <div class="botones">
-                    <a href="compras_perfil.html">
+                    <a href="compras_perfil.php">
                         <button id="agregar_productos">Continuar</button></a>
-                    <a href="index.html">
+                    <a href="index.php">
                         <button id="siguiente_fase">Agregar más productos</button></a>
                 </div>
             </div>
@@ -107,39 +135,10 @@ if(!isset($_SESSION['nombre'])){
     <hr>
     <!-- Pie de página -->
     <footer>
-        <div class="footer" id="pie_pagina">
-            <!-- Información sobre la empresa -->
-            <div>
-                <h3 class="footer_titulo">Azabache Fast Food</h3>
-                <img class="footer_logo" src="imagenes/azabache_Logo.png" alt>
-            </div>
-            <!-- Sección de información de contacto -->
-            <div class="footer_section">
-                <h3 class="footer_titulo">Información</h3>
-                <p class="footer_texto">
-                    <img class="footer_imagen" src="imagenes/Ubicacion.png" alt>
-                    Carrera 10 # 13B - 22
-                </p>
-                <p class="footer_texto">
-                    <img class="footer_imagen" src="imagenes/whatsapp.png" alt> 321
-                    456 7890
-                </p>
-            </div>
-            <!-- Enlaces rápidos -->
-            <div class="footer_section">
-                <h3 class="footer_titulo">Enlaces rápidos</h3>
-                <ul>
-                    <li><a class="footer_enlaces" href="index.html">Inicio</a></li>
-                    <li><a class="footer_enlaces" href="productos.html">Productos</a></li>
-                    <li><a class="footer_enlaces" href="compras.html">Carrito</a></li>
-                    <li><a class="footer_enlaces" href="#pie_pagina">Contactos</a></li>
-                </ul>
-            </div>
-        </div>
-        <!-- Derechos de autor -->
-        <div class="footer_copyright">
-            <p>&copy; 2022 Azabache Fast Food. Todos los derechos reservados.</p>
-        </div>
+        <!-- Contenido del pie de página -->
+        <?php
+        include_once 'piePagina.html'
+    ?>
     </footer>
 </body>
 
