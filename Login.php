@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("./conexion.php");
 if (isset($_POST["username"])) {
   $user = $_POST["username"];
@@ -19,7 +20,7 @@ if (isset($_POST["username"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="imagenes/icono_hamburguesa.ico" rel="shor cut icon"> <!-- Icono del sitio -->
-    <link href="css/style_login.css" rel="stylesheet"> <!-- Enlace a la hoja de estilos CSS -->
+    <link href="css/style_login.css" rel="stylesheet"> <!--  Enlace a la hoja de estilos CSS -->
     <title>Azabache Fast Food</title> <!-- Título de la página -->
 </head>
 
