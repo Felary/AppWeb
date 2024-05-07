@@ -13,9 +13,7 @@ try {
         $apellido = isset($_POST['apellido']) ? $_POST['apellido'] : '';
         $telefono = isset($_POST['telefono']) ? $_POST['telefono'] : '';
         $correo = isset($_POST['correo']) ? $_POST['correo'] : '';
-        $direccion = isset($_POST['direccion']) ? $_POST['direccion'] : '';
-
-       
+        $direccion = isset($_POST['direccion']) ? $_POST['direccion'] : '';       
         // Verifica si el teléfono es un número
         if (!is_numeric($telefono)) {
             throw new Exception("El teléfono debe ser un número");

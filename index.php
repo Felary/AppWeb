@@ -58,8 +58,9 @@ $_SESSION['nombre']=$_GET['nombre'];
         <!-- Sección lateral -->
         <section class="container_lateral">
             <?php
-              echo "<h1 style='color: white; font-size: 30px;'>Bienvenido ".$_SESSION['nombre']."</h1>";
+              echo "<a href='modificarPerfil.php' style='text-decoration: none;'><h1 style='color: white; font-size: 30px;'>Bienvenido ".$_SESSION['nombre']."</h1></a>";
             ?>
+
 
             <!-- Imagen lateral -->
             <img class=" container_lateral_imagen" src="imagenes/hamburguesa1.jpg" alt="..." />
