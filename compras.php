@@ -7,6 +7,7 @@ if(!isset($_SESSION['nombre'])){
 <?php
 include_once 'conexion.php';
 $_SESSION["cupon"] = "No se ha aplicado ningún cupón";
+$_SESSION["subtotal"] = 12500;
 if (isset($_POST["cupon"])) {
    
   $cupon = $_POST["cupon"];
@@ -17,13 +18,8 @@ if (isset($_POST["cupon"])) {
   if ($resultado != false) {
     $_SESSION["codigo"] = $resultado["codigo"];
     $_SESSION["descuento"] = $resultado["descuento"];
-    $_SESSION["cupon"] = "El cupón es válido";
-    $_SESSION["subtotal"] = 12500;
-    
-} else {    
-   
-    $_SESSION["descuento"] = 0;
-}
+    $_SESSION["cupon"] = "El cupón es válido";   
+} 
 }
 ?>
 <?php
@@ -100,7 +96,8 @@ if (isset($_POST["cupon"])) {
                 <div class="campo_cupon">
 
                     <form method="POST" action="compras.php" style="display: flex;">
-                        <input class="cupon" id="cupon" name="cupon" type="text" placeholder="Ingresar cupón" autofocus>
+                        <input class="cupon" id="cupon" name="cupon" type="text" placeholder="Ingresar cupón" required
+                            autofocus>
                         <button id="aplicar_cupon">Aplicar</button>
                     </form>
                 </div>

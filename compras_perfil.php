@@ -3,13 +3,48 @@ session_start();
 if(!isset($_SESSION['nombre'])){
     header("Location: login.php");
 }
+
+session_start();
+if(!isset($_SESSION['nombre'])){
+    header("Location: login.php");
+}
+
+include("./conexion.php");
+$_SESSION['mensaje']="Se continuara con el proceso 
+            una vez acabe esta seccion";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : '';
+    $apellido = isset($_POST['apellido']) ? $_POST['apellido'] : '';
+    $telefono = isset($_POST['telefono']) ? $_POST['telefono'] : '';
+    $correo = isset($_POST['correo']) ? $_POST['correo'] : '';
+    $direccion = isset($_POST['direccion']) ? $_POST['direccion'] : '';
+
+    // Verifica si todos los campos están llenos
+    if ($nombre != '' && $apellido != '' && $telefono != '' && $correo != '' && $direccion != '') {
+        // Prepara una consulta SQL para insertar los datos en la base de datos
+        $sentencia = $conexion->prepare("INSERT INTO datos (nombre, apellido, telefono, correo, direccion) VALUES (?, ?, ?, ?, ?)");
+        $sentencia->execute([$nombre, $apellido, $telefono, $correo, $direccion]);
+
+        if ($sentencia->rowCount() > 0) {
+            $_SESSION['mensaje']="Datos insertados correctamente";           
+        } else {
+            $_SESSION['mensaje']="Error al insertar los datos";            
+        }
+    } else {
+        $_SESSION['mensaje']="Por favor, completa todos los campos";
+        
+    }
+}
+
+$subtotal = isset($_SESSION["subtotal"]) ? $_SESSION["subtotal"] : 0;
+$descuento = isset($_SESSION["descuento"]) ? $_SESSION["descuento"] : 0;
+$codigo = isset($_SESSION["codigo"]) ? $_SESSION["codigo"] : 0;    
+$nuevoTotal = $subtotal - $descuento;   
 ?>
-<?php
-    $subtotal = isset($_SESSION["subtotal"]) ? $_SESSION["subtotal"] : 0;
-    $descuento = isset($_SESSION["descuento"]) ? $_SESSION["descuento"] : 0;
-    $codigo = isset($_SESSION["codigo"]) ? $_SESSION["codigo"] : 0;    
-    $nuevoTotal = $subtotal - $descuento;   
-?>
+
+<script>
+alert("<?php echo $message; ?>");
+</script>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -59,55 +94,48 @@ include_once 'menuSecundario.html'
         esencial para la finalización de la compra.
         </pre>
 
+            <form action="compras_perfil.php" method="post">
+                <div class="formulario">
+                    <p>NOMBRE</p>
+                    <p class="asterisco">*</p>
+                </div>
+                <input class="cupon1" id="cupon" name="nombre" type="text" placeholder="Ingresar Nombre" required>
 
-            <div class="formulario">
-                <p>
-                    NOMBRE
-                </p>
-                <p class="asterisco">*</p>
+                <div class="formulario">
+                    <p>APELLIDO</p>
+                    <p class="asterisco">*</p>
+                </div>
+                <input class="cupon1" id="cupon" name="apellido" type="text" placeholder="Ingresar Apellido" required>
 
-            </div>
-            <input class="cupon1" id="cupon" name="nombre" type="text" placeholder="Ingresar Nombre">
-            <div class="formulario">
-                <p>
-                    APELLIDO
-                </p>
-                <p class="asterisco">*</p>
+                <div class="formulario">
+                    <p>TELEFONO</p>
+                    <p class="asterisco">*</p>
+                </div>
+                <input class="cupon1" id="cupon" name="telefono" type="tel" placeholder="Ingrese su Numero" required>
 
-            </div>
-            <input class="cupon1" id="cupon" name="apellido" type="text" placeholder="Ingresar Apellido">
-            <div class="formulario">
-                <p>
-                    TELEFONO
-                </p>
-                <p class="asterisco">*</p>
+                <div class="formulario">
+                    <p>CORREO</p>
+                    <p class="asterisco">*</p>
+                </div>
+                <input class="cupon1" id="cupon" name="correo" type="email" placeholder="Ingresar Correo" required>
 
-            </div>
-            <input class="cupon1" id="cupon" name="telefono" type="tel" placeholder="Ingrese su Numero">
-            <div class="formulario">
-                <p class="">
-                    CORREO
-                </p>
-                <p class="asterisco">*</p>
+                <div class="formulario">
+                    <p>DIRECCIÓN</p>
+                    <p class="asterisco">*</p>
+                </div>
+                <input class="cupon1" id="cupon" name="direccion" type="text" placeholder="Ingrese su direccion"
+                    required>
 
-            </div>
-            <input class="cupon1" id="cupon" name="correo" type="email" placeholder="Ingresar Correo">
-            <div class="formulario">
-                <p>
-                    DIRECCIÓN
-                </p>
-                <p class="asterisco">*</p>
-
-            </div>
-            <input class="cupon1" id="cupon" name="direccion" type="text" placeholder="Ingrese su direccion">
-
+                <button id="siguiente_fase" type=" submit" name="continuar">Continuar</button>
+            </form>
         </main>
 
         <main class="carrito_envio">
             <h2 class="carrito_titulo">Envio </h2>
             <pre class="notas">
-                Se continuaracon el proceso
-                 una vez acabe esta seccion
+            <?php
+            echo $_SESSION['mensaje'];
+            ?>
         </pre>
 
 
@@ -147,10 +175,9 @@ include_once 'menuSecundario.html'
                     <span id="total">$<?php echo number_format($nuevoTotal, 2, '.', ','); ?></span>
                 </div>
                 <!-- Botones para continuar con el proceso de compra -->
-                <div class="botones">
-                    <a href="compras_perfil.php">
-                        <button id="agregar_productos">Continuar</button></a>
-                    <a href="compras.php">
+                <div class="botones" style="display: flex;">
+
+                    <a href=" compras.php">
                         <button id="siguiente_fase">Volver</button></a>
                 </div>
             </div>
