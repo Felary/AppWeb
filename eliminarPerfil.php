@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['nombre'])) {
+if (!isset($_SESSION['usuario'])) {
     header("Location: login.php");
 }
 $_SESSION["mensaje"] = "Eliminación de cuenta de usuario";
@@ -14,7 +14,7 @@ if (isset($_POST["user"])) {
     $sentencia->execute([$user, $user]);
     $usuario = $sentencia->fetch(PDO::FETCH_ASSOC);
 
-    if ($usuario) {
+    if ($usuario) { 
         $email = $usuario['correo'];
         $username = $usuario['usuario'];
         $password = $usuario['contraseña'];

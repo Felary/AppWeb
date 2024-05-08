@@ -1,8 +1,15 @@
 <?php
 session_start();
-if (!isset($_SESSION['nombre'])) {
+if (!isset($_SESSION['usuario'])) {
     header("Location: login.php");
 }
+
+if (isset($_GET["usuario"]) && isset($_GET["correo"]) && isset($_GET["contraseña"])) {
+    $_SESSION['usuario'] = $_GET['usuario'];
+    $_SESSION['correo'] = $_GET['correo'];
+    $_SESSION['contraseña'] = $_GET['contraseña'];
+}
+
 $_SESSION["mensaje"] = "Actualizacion de datos personales";
 
 include("./conexion.php");

@@ -1,13 +1,13 @@
 <?php
 session_start();
-if(!isset($_SESSION['nombre'])){
+if (!isset($_SESSION['usuario'])) {
     header("Location: login.php");
 }
 ?>
 <?php
 session_start();
-if(isset($_GET["nombre"])){
-$_SESSION['nombre']=$_GET['nombre'];
+if (isset($_GET["usuario"])) {
+    $_SESSION['usuario'] = $_GET['usuario'];
 }
 ?>
 
@@ -33,9 +33,9 @@ $_SESSION['nombre']=$_GET['nombre'];
     <header class="header">
 
         <?php
-        
+
         include_once 'menuSecundario.html'
-    ?>
+        ?>
 
     </header>
 
@@ -58,7 +58,7 @@ $_SESSION['nombre']=$_GET['nombre'];
         <!-- Sección lateral -->
         <section class="container_lateral">
             <?php
-              echo "<a href='modificarPerfil.php' style='text-decoration: none;'><h1 style='color: white; font-size: 30px;'>Bienvenido ".$_SESSION['nombre']."</h1></a>";
+            echo "<a href='modificarPerfil.php' style='text-decoration: none;'><h1 style='color: white; font-size: 30px;'>Bienvenido " . $_SESSION['usuario'] . "</h1></a>";
             ?>
 
 
@@ -118,7 +118,7 @@ $_SESSION['nombre']=$_GET['nombre'];
         <!-- Contenido del pie de página -->
         <?php
         include_once 'piePagina.html'
-    ?>
+        ?>
     </footer>
 </body>
 
