@@ -102,7 +102,7 @@ $nuevoTotal = $subtotal - $descuento;
         <div class="casilla_inactiva">
             <a class="acceso_items" href="compras_perfil.php">Pago</a>
         </div>
-    <!-- Fin de la barra de navegación -->
+        <!-- Fin de la barra de navegación -->
     </nav>
 
     <!-- Inicio de la sección con la clase "barra" -->
@@ -207,7 +207,7 @@ $nuevoTotal = $subtotal - $descuento;
         <!-- Fin del bloque principal para el resumen del pedido -->
     </section>
     <!-- Fin de la sección -->
-    
+
     <hr>
     <!-- Inicio del pie de página -->
     <footer>
