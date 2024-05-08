@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_start(); 
 
 $_SESSION["mensaje"] = "Se continuara con el proceso una vez te registres";
 
