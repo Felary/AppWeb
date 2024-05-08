@@ -18,7 +18,10 @@ body {
   width: 100%;
   z-index: 1000;
 }
-
+.texto_usuario:hover{
+ color:#e75b0e;
+  
+}
 .header_logo {
   width: 150px;
   height: 60px;
