@@ -1,11 +1,12 @@
 <?php
 session_start();
-if(!isset($_SESSION['usuario'])){
+if (!isset($_SESSION['usuario'])) {
     header("Location: login.php");
 }
 
 include("./conexion.php");
-$_SESSION['mensaje']="Se continuara con el proceso una vez acabe esta seccion";
+$_SESSION['mensaje'] = "Se continuara con el proceso 
+            una vez acabe esta seccion";
 
 try {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -13,7 +14,7 @@ try {
         $apellido = isset($_POST['apellido']) ? $_POST['apellido'] : '';
         $telefono = isset($_POST['telefono']) ? $_POST['telefono'] : '';
         $correo = isset($_POST['correo']) ? $_POST['correo'] : '';
-        $direccion = isset($_POST['direccion']) ? $_POST['direccion'] : '';       
+        $direccion = isset($_POST['direccion']) ? $_POST['direccion'] : '';
         // Verifica si el teléfono es un número
         if (!is_numeric($telefono)) {
             throw new Exception("El teléfono debe ser un número");
@@ -24,9 +25,9 @@ try {
         $sentencia->execute([$nombre, $apellido, $telefono, $correo, $direccion]);
 
         if ($sentencia->rowCount() > 0) {
-            $_SESSION['mensaje']="Datos insertados correctamente";           
+            $_SESSION['mensaje'] = "Datos insertados correctamente";
         } else {
-            throw new Exception("Error al insertar los datos");            
+            throw new Exception("Error al insertar los datos");
         }
     }
 } catch (Exception $e) {
@@ -35,8 +36,8 @@ try {
 
 $subtotal = isset($_SESSION["subtotal"]) ? $_SESSION["subtotal"] : 0;
 $descuento = isset($_SESSION["descuento"]) ? $_SESSION["descuento"] : 0;
-$codigo = isset($_SESSION["codigo"]) ? $_SESSION["codigo"] : 0;    
-$nuevoTotal = $subtotal - $descuento;   
+$codigo = isset($_SESSION["codigo"]) ? $_SESSION["codigo"] : 0;
+$nuevoTotal = $subtotal - $descuento;
 ?>
 
 <script>
@@ -58,8 +59,8 @@ alert("<?php echo $message; ?>");
 
         <?php
 
-include_once 'menuSecundario.html'
-?>
+        include_once 'menuSecundario.html'
+        ?>
 
     </header>
 
@@ -149,9 +150,9 @@ include_once 'menuSecundario.html'
                 <!-- Campo para ingresar un cupón -->
                 <div class="campo_cupon">
                     <?php
-                    echo "<h1 style='color: white; font-size: 20px;'>".$_SESSION['cupon']." </h1>";
+                    echo "<h1 style='color: white; font-size: 20px;'>" . $_SESSION['cupon'] . " </h1>";
                     ?>
-                    <input class="cupon" id="cupon" name="cupon" type="text" placeholder="Ingresar cupón"
+                    <input class="cupon" id="cupon" name="cupon" type="text" placeholder="sin cupon" disabled
                         value="<?php echo isset($_SESSION["codigo"]) ? $_SESSION["codigo"] : ''; ?>"
                         <?php echo isset($_SESSION["descuento"]) ? 'disabled' : ''; ?>>
 
@@ -188,7 +189,7 @@ include_once 'menuSecundario.html'
         <!-- Contenido del pie de página -->
         <?php
         include_once 'piePagina.html'
-    ?>
+        ?>
     </footer>
 </body>
 

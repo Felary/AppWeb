@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$_SESSION["mensaje"]="Se continuara con el proceso una vez te registres";
+$_SESSION["mensaje"] = "Se continuara con el proceso una vez te registres";
 
 include("./conexion.php");
 if (isset($_POST["username"], $_POST["email"], $_POST["password"], $_POST["confirmar"])) {
@@ -18,7 +18,7 @@ if (isset($_POST["username"], $_POST["email"], $_POST["password"], $_POST["confi
             $resultado = $sentencia->execute([$user, $email, $password]);
 
             if ($resultado == true) {
-                $_SESSION["nombre"] = $user;
+                header("Location: index.php");
             }
         } else {
             $_SESSION["mensaje"] = "Las contraseñas no coinciden";
@@ -110,7 +110,7 @@ if (isset($_POST["username"], $_POST["email"], $_POST["password"], $_POST["confi
             <section class="container_lateral">
                 <div style="margin-top: 15px;">
                     <?php
-                        echo $_SESSION["mensaje"];
+                    echo $_SESSION["mensaje"];
                     ?>
                 </div>
                 <!-- Imagen lateral -->
@@ -128,7 +128,7 @@ if (isset($_POST["username"], $_POST["email"], $_POST["password"], $_POST["confi
     <footer>
         <?php
         include_once 'piePagina.html'
-    ?>
+        ?>
     </footer>
 </body>
 

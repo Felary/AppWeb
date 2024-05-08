@@ -1,21 +1,18 @@
 <?php
 session_start();
+
 if (!isset($_SESSION['usuario'])) {
     header("Location: login.php");
 }
-
+$_SESSION["mensaje"] = "Actualizacion de datos personales";
 if (isset($_GET["usuario"]) && isset($_GET["correo"]) && isset($_GET["contraseña"])) {
     $_SESSION['usuario'] = $_GET['usuario'];
     $_SESSION['correo'] = $_GET['correo'];
     $_SESSION['contraseña'] = $_GET['contraseña'];
 }
 
-$_SESSION["mensaje"] = "Actualizacion de datos personales";
-
 include("./conexion.php");
-
-
-if (isset($_POST["username"], $_POST["email"], $_POST["password"], $_POST["confirmar"])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user = $_POST["username"];
     $email = $_POST["email"];
     $password = $_POST["password"];
@@ -31,7 +28,9 @@ if (isset($_POST["username"], $_POST["email"], $_POST["password"], $_POST["confi
             $sentencia = $conexion->prepare("UPDATE registro SET usuario = ?, contraseña = ? WHERE correo = ?");
             $resultado = $sentencia->execute([$user, $password, $email]);
             if ($resultado) {
-                $_SESSION["nombre"] = $user;
+                $_SESSION["usuario"] = $user;
+                $_SESSION["correo"] = $email;
+                $_SESSION["contraseña"] = $password;
                 $_SESSION["mensaje"] = "Datos actualizados";
             }
         } else {
@@ -41,7 +40,6 @@ if (isset($_POST["username"], $_POST["email"], $_POST["password"], $_POST["confi
         $_SESSION["mensaje"] = "Las contraseñas no coinciden";
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -92,23 +90,28 @@ if (isset($_POST["username"], $_POST["email"], $_POST["password"], $_POST["confi
             <div class="login-container">
                 <!-- Inicio del formulario de inicio de sesión -->
                 <form action="modificarPerfil.php" method="post">
-
                     <div class="input-group">
                         <label for="email">Correo</label>
-                        <input type="email" id="email" name="email" placeholder="correo" required autofocus>
+                        <input type="email" id="email" name="email" placeholder="correo"
+                            value="<?php echo isset($_SESSION['correo']) ? $_SESSION['correo'] : ''; ?>">
                     </div>
-                    <!-- Grupo de entrada para el nombre de usuario -->
+
                     <div class="input-group">
                         <label for="username">Usuario</label>
-                        <input type="text" id="username" name="username" placeholder="usuario" required>
+                        <input type="text" id="username" name="username" placeholder="usuario" required autofocus
+                            value="<?php echo isset($_SESSION['usuario']) ? $_SESSION['usuario'] : ''; ?>">
                     </div>
+
                     <div class="input-group">
                         <label for="password">Contraseña</label>
-                        <input type="password" id="password" name="password" placeholder="contraseña" required>
+                        <input type="password" id="password" name="password" placeholder="contraseña" required
+                            value="<?php echo isset($_SESSION['contraseña']) ? $_SESSION['contraseña'] : ''; ?>">
                     </div>
+
                     <div class="input-group">
                         <label for="password">Confirmar </label>
-                        <input type="password" id="confirmar" name="confirmar" placeholder="contraseña" required>
+                        <input type="password" id="confirmar" name="confirmar" placeholder="confirmar contraseña"
+                            required>
                     </div>
                     <!-- Botón de envío del formulario -->
                     <button type="submit" id="modificar">Modificar</button>
